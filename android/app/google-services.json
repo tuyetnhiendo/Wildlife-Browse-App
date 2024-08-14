@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832047121429",
+    "project_id": "bwrac-b4189",
+    "storage_bucket": "bwrac-b4189.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832047121429:android:f2ead26955e6a5736bfa1c",
+        "android_client_info": {
+          "package_name": "com.mycompany.wildlifebrowseapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPNuxiwmLOEV_zaGljG8_uzqAL_ixaOHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
