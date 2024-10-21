@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'menu_nav_model.dart';
 export 'menu_nav_model.dart';
 
@@ -23,21 +22,6 @@ class _MenuNavWidgetState extends State<MenuNavWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MenuNavModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      context.pushNamed(
-        'Notification',
-        extra: <String, dynamic>{
-          kTransitionInfoKey: const TransitionInfo(
-            hasTransition: true,
-            transitionType: PageTransitionType.rightToLeft,
-          ),
-        },
-      );
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -117,7 +101,7 @@ class _MenuNavWidgetState extends State<MenuNavWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed(
-                            'Requestlist',
+                            'Home',
                             extra: <String, dynamic>{
                               kTransitionInfoKey: const TransitionInfo(
                                 hasTransition: true,
@@ -210,12 +194,12 @@ class _MenuNavWidgetState extends State<MenuNavWidget> {
                   onPressed: () async {
                     context.pushNamed(
                       'Createrequest',
-                      extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
-                          hasTransition: true,
-                          transitionType: PageTransitionType.rightToLeft,
+                      queryParameters: {
+                        'request': serializeParam(
+                          'shelter',
+                          ParamType.String,
                         ),
-                      },
+                      }.withoutNulls,
                     );
                   },
                   text: 'Create Requests',
@@ -300,8 +284,8 @@ class _MenuNavWidgetState extends State<MenuNavWidget> {
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
                 child: FFButtonWidget(
-                  onPressed: () async {
-                    context.pushNamed('Notification');
+                  onPressed: () {
+                    print('Button pressed ...');
                   },
                   text: 'Notifications',
                   icon: const Icon(

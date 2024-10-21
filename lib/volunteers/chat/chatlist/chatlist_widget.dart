@@ -21,8 +21,6 @@ class _ChatlistWidgetState extends State<ChatlistWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChatlistModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

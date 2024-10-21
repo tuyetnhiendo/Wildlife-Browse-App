@@ -23,8 +23,6 @@ class _MainprofileWidgetState extends State<MainprofileWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MainprofileModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -82,7 +80,7 @@ class _MainprofileWidgetState extends State<MainprofileWidget> {
             children: [
               wrapWithModel(
                 model: _model.avatarModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: const AvatarWidget(),
               ),
               Padding(

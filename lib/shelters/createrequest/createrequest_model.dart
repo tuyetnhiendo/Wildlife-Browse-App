@@ -54,7 +54,6 @@ class CreaterequestModel extends FlutterFlowModel<CreaterequestWidget> {
     return null;
   }
 
-  DateTime? datePicked1;
   // State field(s) for Time widget.
   FocusNode? timeFocusNode;
   TextEditingController? timeTextController;
@@ -71,7 +70,6 @@ class CreaterequestModel extends FlutterFlowModel<CreaterequestWidget> {
     return null;
   }
 
-  DateTime? datePicked2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController5;

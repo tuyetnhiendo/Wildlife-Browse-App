@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'changepass_widget.dart' show ChangepassWidget;
+import 'resetpass_widget.dart' show ResetpassWidget;
 import 'package:flutter/material.dart';
 
-class ChangepassModel extends FlutterFlowModel<ChangepassWidget> {
+class ResetpassModel extends FlutterFlowModel<ResetpassWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for emailAddress widget.

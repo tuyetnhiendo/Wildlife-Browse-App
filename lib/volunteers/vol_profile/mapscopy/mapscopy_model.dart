@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'image_details_widget.dart' show ImageDetailsWidget;
+import 'mapscopy_widget.dart' show MapscopyWidget;
 import 'package:flutter/material.dart';
 
-class ImageDetailsModel extends FlutterFlowModel<ImageDetailsWidget> {
+class MapscopyModel extends FlutterFlowModel<MapscopyWidget> {
   @override
   void initState(BuildContext context) {}
 

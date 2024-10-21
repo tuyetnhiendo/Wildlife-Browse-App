@@ -27,8 +27,6 @@ class _RequestHistoryWidgetState extends State<RequestHistoryWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -836,8 +834,9 @@ class _RequestHistoryWidgetState extends State<RequestHistoryWidget> {
                                       ChipData('Accepted'),
                                       ChipData('Completed')
                                     ],
-                                    onChanged: (val) => setState(() => _model
-                                        .choiceChipsValue = val?.firstOrNull),
+                                    onChanged: (val) => safeSetState(() =>
+                                        _model.choiceChipsValue =
+                                            val?.firstOrNull),
                                     selectedChipStyle: ChipStyle(
                                       backgroundColor:
                                           FlutterFlowTheme.of(context).primary,

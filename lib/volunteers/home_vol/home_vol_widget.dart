@@ -33,7 +33,7 @@ class _HomeVolWidgetState extends State<HomeVolWidget>
       vsync: this,
       length: 3,
       initialIndex: 0,
-    )..addListener(() => setState(() {}));
+    )..addListener(() => safeSetState(() {}));
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -88,8 +88,6 @@ class _HomeVolWidgetState extends State<HomeVolWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -109,6 +107,23 @@ class _HomeVolWidgetState extends State<HomeVolWidget>
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
+          leading: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+            child: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 80.0,
+              icon: Icon(
+                Icons.menu,
+                color: FlutterFlowTheme.of(context).primary,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                context.pushNamed('menu_navofvolunteers');
+              },
+            ),
+          ),
           title: Text(
             'Home - Dashboard',
             style: FlutterFlowTheme.of(context).headlineLarge.override(
@@ -116,25 +131,7 @@ class _HomeVolWidgetState extends State<HomeVolWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-              child: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30.0,
-                borderWidth: 1.0,
-                buttonSize: 60.0,
-                icon: Icon(
-                  Icons.account_circle_outlined,
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 30.0,
-                ),
-                onPressed: () {
-                  print('IconButton pressed ...');
-                },
-              ),
-            ),
-          ],
+          actions: const [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -144,16 +141,6 @@ class _HomeVolWidgetState extends State<HomeVolWidget>
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 16.0),
-                child: Text(
-                  'A summary of your account activity',
-                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ),
               Expanded(
                 child: Column(
                   children: [

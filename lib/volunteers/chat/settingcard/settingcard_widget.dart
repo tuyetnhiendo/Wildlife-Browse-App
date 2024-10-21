@@ -52,8 +52,6 @@ class _SettingcardWidgetState extends State<SettingcardWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -153,10 +151,12 @@ class _SettingcardWidgetState extends State<SettingcardWidget>
                                 opaque: false,
                                 cursor: MouseCursor.defer ?? MouseCursor.defer,
                                 onEnter: ((event) async {
-                                  setState(() => _model.iuserHovered1 = true);
+                                  safeSetState(
+                                      () => _model.iuserHovered1 = true);
                                 }),
                                 onExit: ((event) async {
-                                  setState(() => _model.iuserHovered1 = false);
+                                  safeSetState(
+                                      () => _model.iuserHovered1 = false);
                                 }),
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 150),
@@ -256,10 +256,12 @@ class _SettingcardWidgetState extends State<SettingcardWidget>
                                 opaque: false,
                                 cursor: MouseCursor.defer ?? MouseCursor.defer,
                                 onEnter: ((event) async {
-                                  setState(() => _model.iuserHovered2 = true);
+                                  safeSetState(
+                                      () => _model.iuserHovered2 = true);
                                 }),
                                 onExit: ((event) async {
-                                  setState(() => _model.iuserHovered2 = false);
+                                  safeSetState(
+                                      () => _model.iuserHovered2 = false);
                                 }),
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 150),
@@ -323,10 +325,10 @@ class _SettingcardWidgetState extends State<SettingcardWidget>
                   opaque: false,
                   cursor: MouseCursor.defer ?? MouseCursor.defer,
                   onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = true);
+                    safeSetState(() => _model.mouseRegionHovered1 = true);
                   }),
                   onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = false);
+                    safeSetState(() => _model.mouseRegionHovered1 = false);
                   }),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
@@ -381,10 +383,10 @@ class _SettingcardWidgetState extends State<SettingcardWidget>
                   opaque: true,
                   cursor: SystemMouseCursors.click ?? MouseCursor.defer,
                   onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered2 = true);
+                    safeSetState(() => _model.mouseRegionHovered2 = true);
                   }),
                   onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered2 = false);
+                    safeSetState(() => _model.mouseRegionHovered2 = false);
                   }),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),

@@ -129,8 +129,6 @@ class _LogoPageWidgetState extends State<LogoPageWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

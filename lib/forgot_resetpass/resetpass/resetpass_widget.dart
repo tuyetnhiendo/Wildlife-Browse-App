@@ -4,30 +4,28 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'changepass_model.dart';
-export 'changepass_model.dart';
+import 'resetpass_model.dart';
+export 'resetpass_model.dart';
 
-class ChangepassWidget extends StatefulWidget {
-  const ChangepassWidget({super.key});
+class ResetpassWidget extends StatefulWidget {
+  const ResetpassWidget({super.key});
 
   @override
-  State<ChangepassWidget> createState() => _ChangepassWidgetState();
+  State<ResetpassWidget> createState() => _ResetpassWidgetState();
 }
 
-class _ChangepassWidgetState extends State<ChangepassWidget> {
-  late ChangepassModel _model;
+class _ResetpassWidgetState extends State<ResetpassWidget> {
+  late ResetpassModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ChangepassModel());
+    _model = createModel(context, () => ResetpassModel());
 
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -58,12 +56,12 @@ class _ChangepassWidgetState extends State<ChangepassWidget> {
               color: FlutterFlowTheme.of(context).secondary,
               size: 30.0,
             ),
-            onPressed: () {
-              print('IconButton pressed ...');
+            onPressed: () async {
+              context.pushNamed('SignInPage');
             },
           ),
           title: Text(
-            'Change/Reset Password',
+            'Reset Password',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -255,8 +253,10 @@ class _ChangepassWidgetState extends State<ChangepassWidget> {
                                   email: _model.emailAddressTextController.text,
                                   context: context,
                                 );
+
+                                context.goNamed('resetmessage');
                               },
-                              text: 'Send Link',
+                              text: 'Reset',
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 50.0,

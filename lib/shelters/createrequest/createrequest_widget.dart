@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -10,7 +11,12 @@ import 'createrequest_model.dart';
 export 'createrequest_model.dart';
 
 class CreaterequestWidget extends StatefulWidget {
-  const CreaterequestWidget({super.key});
+  const CreaterequestWidget({
+    super.key,
+    String? request,
+  }) : request = request ?? 'shelter';
+
+  final String request;
 
   @override
   State<CreaterequestWidget> createState() => _CreaterequestWidgetState();
@@ -34,102 +40,12 @@ class _CreaterequestWidgetState extends State<CreaterequestWidget> {
 
     _model.dateTextController ??= TextEditingController();
     _model.dateFocusNode ??= FocusNode();
-    _model.dateFocusNode!.addListener(
-      () async {
-        final datePicked1Date = await showDatePicker(
-          context: context,
-          initialDate: getCurrentTimestamp,
-          firstDate: getCurrentTimestamp,
-          lastDate: DateTime(2050),
-          builder: (context, child) {
-            return wrapInMaterialDatePickerTheme(
-              context,
-              child!,
-              headerBackgroundColor: FlutterFlowTheme.of(context).primary,
-              headerForegroundColor: FlutterFlowTheme.of(context).info,
-              headerTextStyle:
-                  FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'Outfit',
-                        fontSize: 32.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-              pickerBackgroundColor:
-                  FlutterFlowTheme.of(context).secondaryBackground,
-              pickerForegroundColor: FlutterFlowTheme.of(context).primaryText,
-              selectedDateTimeBackgroundColor:
-                  FlutterFlowTheme.of(context).primary,
-              selectedDateTimeForegroundColor:
-                  FlutterFlowTheme.of(context).info,
-              actionButtonForegroundColor:
-                  FlutterFlowTheme.of(context).primaryText,
-              iconSize: 24.0,
-            );
-          },
-        );
-
-        if (datePicked1Date != null) {
-          safeSetState(() {
-            _model.datePicked1 = DateTime(
-              datePicked1Date.year,
-              datePicked1Date.month,
-              datePicked1Date.day,
-            );
-          });
-        }
-      },
-    );
+    _model.dateFocusNode!.addListener(() => safeSetState(() {}));
     _model.timeTextController ??= TextEditingController();
     _model.timeFocusNode ??= FocusNode();
-    _model.timeFocusNode!.addListener(
-      () async {
-        final datePicked2Date = await showDatePicker(
-          context: context,
-          initialDate: getCurrentTimestamp,
-          firstDate: getCurrentTimestamp,
-          lastDate: DateTime(2050),
-          builder: (context, child) {
-            return wrapInMaterialDatePickerTheme(
-              context,
-              child!,
-              headerBackgroundColor: FlutterFlowTheme.of(context).primary,
-              headerForegroundColor: FlutterFlowTheme.of(context).info,
-              headerTextStyle:
-                  FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'Outfit',
-                        fontSize: 32.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-              pickerBackgroundColor:
-                  FlutterFlowTheme.of(context).secondaryBackground,
-              pickerForegroundColor: FlutterFlowTheme.of(context).primaryText,
-              selectedDateTimeBackgroundColor:
-                  FlutterFlowTheme.of(context).primary,
-              selectedDateTimeForegroundColor:
-                  FlutterFlowTheme.of(context).info,
-              actionButtonForegroundColor:
-                  FlutterFlowTheme.of(context).primaryText,
-              iconSize: 24.0,
-            );
-          },
-        );
-
-        if (datePicked2Date != null) {
-          safeSetState(() {
-            _model.datePicked2 = DateTime(
-              datePicked2Date.year,
-              datePicked2Date.month,
-              datePicked2Date.day,
-            );
-          });
-        }
-      },
-    );
+    _model.timeFocusNode!.addListener(() => safeSetState(() {}));
     _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -486,7 +402,7 @@ class _CreaterequestWidgetState extends State<CreaterequestWidget> {
                                             isSearchable: true,
                                             isMultiSelect: true,
                                             onMultiSelectChanged: (val) =>
-                                                setState(() => _model
+                                                safeSetState(() => _model
                                                     .floraDropDownValue = val),
                                           ),
                                         ],
@@ -495,7 +411,7 @@ class _CreaterequestWidgetState extends State<CreaterequestWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            'Quantity Needed                 ',
+                                            'Quantity  Needed               ',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -996,73 +912,120 @@ class _CreaterequestWidgetState extends State<CreaterequestWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              StreamBuilder<List<NotificationShelterRecord>>(
+                                stream: queryNotificationShelterRecord(
+                                  singleRecord: true,
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<NotificationShelterRecord>
+                                      sendNotificationShelterRecordList =
+                                      snapshot.data!;
+                                  // Return an empty Container when the item does not exist.
+                                  if (snapshot.data!.isEmpty) {
+                                    return Container();
+                                  }
+                                  final sendNotificationShelterRecord =
+                                      sendNotificationShelterRecordList
+                                              .isNotEmpty
+                                          ? sendNotificationShelterRecordList
+                                              .first
+                                          : null;
+
+                                  return FFButtonWidget(
+                                    onPressed: () async {
+                                      FFAppState()
+                                          .addToRequestlistt(RequestlistStruct(
+                                        shelterName: _model
+                                            .shelternameTextController.text,
+                                        selecttheTypeofBrowse:
+                                            _model.floraDropDownValue,
+                                        quantityNeeded: int.tryParse(
+                                            _model.quantityTextController.text),
+                                        extra: _model.textController5.text,
+                                      ));
+                                      FFAppState().update(() {});
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Success',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                    },
+                                    text: 'Send',
+                                    options: FFButtonOptions(
+                                      height: 44.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  );
+                                },
+                              ),
                               FFButtonWidget(
-                                onPressed: () async {
-                                  context.pushNamed('Requestlist');
+                                onPressed: () {
+                                  print('Button pressed ...');
                                 },
                                 text: 'Cancel',
                                 options: FFButtonOptions(
                                   height: 40.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
+                                      16.0, 0.0, 16.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: const Color(0x7CFF5963),
+                                  color: const Color(0xFFB1596D),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Open Sans',
+                                        fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                         letterSpacing: 0.0,
                                       ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('Submitted'),
-                                        content: const Text(
-                                            'Your request has been submitted'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                text: 'Send',
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
+                                  elevation: 0.0,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),

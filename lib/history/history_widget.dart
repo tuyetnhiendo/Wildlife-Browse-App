@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,8 +23,6 @@ class _HistoryWidgetState extends State<HistoryWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HistoryModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -76,7 +73,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                           ChipData('Accepted', Icons.incomplete_circle),
                           ChipData('Completed')
                         ],
-                        onChanged: (val) => setState(
+                        onChanged: (val) => safeSetState(
                             () => _model.choiceChipsValue = val?.firstOrNull),
                         selectedChipStyle: ChipStyle(
                           backgroundColor:
@@ -147,49 +144,14 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              StreamBuilder<List<RequestHistoryRecord>>(
-                                stream: queryRequestHistoryRecord(
-                                  singleRecord: true,
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<RequestHistoryRecord>
-                                      textRequestHistoryRecordList =
-                                      snapshot.data!;
-                                  // Return an empty Container when the item does not exist.
-                                  if (snapshot.data!.isEmpty) {
-                                    return Container();
-                                  }
-                                  final textRequestHistoryRecord =
-                                      textRequestHistoryRecordList.isNotEmpty
-                                          ? textRequestHistoryRecordList.first
-                                          : null;
-
-                                  return Text(
-                                    'Hello World',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  );
-                                },
+                              Text(
+                                'Hello World',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
                               Text(
                                 'Hello World',

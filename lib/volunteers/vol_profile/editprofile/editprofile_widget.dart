@@ -41,8 +41,6 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
 
     _model.textController6 ??= TextEditingController();
     _model.textFieldFocusNode6 ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -93,7 +91,7 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
             children: [
               wrapWithModel(
                 model: _model.avatarModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: const AvatarWidget(),
               ),
               FFButtonWidget(

@@ -27,8 +27,6 @@ class _InformationRequest2WidgetState extends State<InformationRequest2Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => InformationRequest2Model());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -106,7 +104,7 @@ class _InformationRequest2WidgetState extends State<InformationRequest2Widget> {
                             child: Stack(
                               children: [
                                 Text(
-                                  'Silver Wattle Collection at Wild Haven Sanctuary\n\nContact Information\nShelter: Wild Haven Sanctuary Shelter\nPhone: (123) 456-7890\nEmail: contact@wildhavensanctuary.org\n\nDescription\nVolunteers are needed to collect Silver Wattle branches for wildlife feeding. Please use gloves and pruning shears.\n\nLocation: 456 Wild Haven Sanctuary Road, Nearby Reserve.\nDate: August 8th, 2024',
+                                  'Contact Information\n\nShelter: Wild Haven Sanctuary Shelter\nEmail: contact@wildhavensanctuary.org\n\nDescription\nVolunteers are needed to collect Silver Wattle branches for wildlife feeding. \n\n\nLocation: 456 Wild Haven Sanctuary Road, Nearby Reserve.\nDate: August 8th, 2024',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -120,11 +118,15 @@ class _InformationRequest2WidgetState extends State<InformationRequest2Widget> {
                           Align(
                             alignment: const AlignmentDirectional(-0.63, 0.61),
                             child: FlutterFlowPlacePicker(
-                              iOSGoogleMapsApiKey: '',
-                              androidGoogleMapsApiKey: '',
-                              webGoogleMapsApiKey: '',
+                              iOSGoogleMapsApiKey:
+                                  'AIzaSyATCGl0q4SCE2XWYdjQZL9DPJivFBi2RUo',
+                              androidGoogleMapsApiKey:
+                                  'AIzaSyATCGl0q4SCE2XWYdjQZL9DPJivFBi2RUo',
+                              webGoogleMapsApiKey:
+                                  'AIzaSyATCGl0q4SCE2XWYdjQZL9DPJivFBi2RUo',
                               onSelect: (place) async {
-                                setState(() => _model.placePickerValue = place);
+                                safeSetState(
+                                    () => _model.placePickerValue = place);
                               },
                               defaultText: 'map',
                               icon: const Icon(
@@ -157,8 +159,8 @@ class _InformationRequest2WidgetState extends State<InformationRequest2Widget> {
                       Align(
                         alignment: const AlignmentDirectional(-0.59, 1.06),
                         child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed('Requestlist');
+                          onPressed: () {
+                            print('Button pressed ...');
                           },
                           text: 'Accept',
                           options: FFButtonOptions(

@@ -57,8 +57,6 @@ class _ChatsettingsWidgetState extends State<ChatsettingsWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -105,10 +103,10 @@ class _ChatsettingsWidgetState extends State<ChatsettingsWidget>
                   opaque: false,
                   cursor: MouseCursor.defer ?? MouseCursor.defer,
                   onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = true);
+                    safeSetState(() => _model.mouseRegionHovered1 = true);
                   }),
                   onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = false);
+                    safeSetState(() => _model.mouseRegionHovered1 = false);
                   }),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
@@ -162,10 +160,10 @@ class _ChatsettingsWidgetState extends State<ChatsettingsWidget>
                   opaque: false,
                   cursor: MouseCursor.defer ?? MouseCursor.defer,
                   onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered2 = true);
+                    safeSetState(() => _model.mouseRegionHovered2 = true);
                   }),
                   onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered2 = false);
+                    safeSetState(() => _model.mouseRegionHovered2 = false);
                   }),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
@@ -222,10 +220,10 @@ class _ChatsettingsWidgetState extends State<ChatsettingsWidget>
                     opaque: false,
                     cursor: SystemMouseCursors.click ?? MouseCursor.defer,
                     onEnter: ((event) async {
-                      setState(() => _model.mouseRegionHovered3 = true);
+                      safeSetState(() => _model.mouseRegionHovered3 = true);
                     }),
                     onExit: ((event) async {
-                      setState(() => _model.mouseRegionHovered3 = false);
+                      safeSetState(() => _model.mouseRegionHovered3 = false);
                     }),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),

@@ -38,8 +38,6 @@ class _MenuNavofvolunteersWidgetState extends State<MenuNavofvolunteersWidget> {
         },
       );
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -223,12 +221,12 @@ class _MenuNavofvolunteersWidgetState extends State<MenuNavofvolunteersWidget> {
                         onPressed: () async {
                           context.pushNamed(
                             'Requestlist',
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.rightToLeft,
+                            queryParameters: {
+                              'requestmenu': serializeParam(
+                                'detail',
+                                ParamType.String,
                               ),
-                            },
+                            }.withoutNulls,
                           );
                         },
                         text: 'Request List',
@@ -318,7 +316,7 @@ class _MenuNavofvolunteersWidgetState extends State<MenuNavofvolunteersWidget> {
                     ),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        context.pushNamed('Notification');
+                        context.pushNamed('Notification_Volunteer');
                       },
                       text: 'Notifications',
                       icon: const Icon(

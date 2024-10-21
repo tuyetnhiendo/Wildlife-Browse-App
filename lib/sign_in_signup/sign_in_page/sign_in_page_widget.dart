@@ -1,8 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -33,7 +35,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
       vsync: this,
       length: 2,
       initialIndex: 0,
-    )..addListener(() => setState(() {}));
+    )..addListener(() => safeSetState(() {}));
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -103,8 +105,6 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -151,12 +151,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(16.0),
-                                bottomRight: Radius.circular(16.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
-                              ),
+                              borderRadius: BorderRadius.circular(18.0),
                             ),
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Align(
@@ -177,7 +172,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                             fontFamily: 'Outfit',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
+                                            fontSize: 35.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                   ),
@@ -399,8 +396,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                     autofillHints: const [
                                                       AutofillHints.password
                                                     ],
-                                                    obscureText: !_model
-                                                        .passwordVisibility,
+                                                    obscureText: false,
                                                     decoration: InputDecoration(
                                                       labelText: 'Password',
                                                       labelStyle:
@@ -468,28 +464,6 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                           .secondaryBackground,
                                                       contentPadding:
                                                           const EdgeInsets.all(24.0),
-                                                      suffixIcon: InkWell(
-                                                        onTap: () => setState(
-                                                          () => _model
-                                                                  .passwordVisibility =
-                                                              !_model
-                                                                  .passwordVisibility,
-                                                        ),
-                                                        focusNode: FocusNode(
-                                                            skipTraversal:
-                                                                true),
-                                                        child: Icon(
-                                                          _model.passwordVisibility
-                                                              ? Icons
-                                                                  .visibility_outlined
-                                                              : Icons
-                                                                  .visibility_off_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                      ),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -518,7 +492,8 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                           0.0, 0.0, 0.0, 16.0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
-                                                      context.pushNamed('Home');
+                                                      context.pushNamed(
+                                                          'homecopy3');
                                                     },
                                                     text: 'Sign In',
                                                     options: FFButtonOptions(
@@ -582,7 +557,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
                                                       context.pushNamed(
-                                                          'profile_ChangePassword_1');
+                                                          'resetpass');
                                                     },
                                                     text: 'Forgot Password',
                                                     options: FFButtonOptions(
@@ -666,169 +641,175 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Carers pressed ...');
-                                                    },
-                                                    text: 'Shelters',
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(40.0, 0.0,
+                                                                20.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () {
+                                                        print(
+                                                            'Carers pressed ...');
+                                                      },
+                                                      text: 'Shelters',
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    30.0,
                                                                     0.0,
-                                                              ),
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
+                                                                    30.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
                                                         color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: const BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        hoverColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      hoverColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
                                                     ),
                                                   ),
-                                                  FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Carers pressed ...');
-                                                    },
-                                                    text: 'Volunteers',
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                40.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () {
+                                                        print(
+                                                            'Carers pressed ...');
+                                                      },
+                                                      text: 'Volunteers',
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
                                                                     0.0,
-                                                              ),
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      hoverColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
-                                                  ),
-                                                  FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Carers pressed ...');
-                                                    },
-                                                    text: 'Landowner',
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
+                                                                    24.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
                                                                     0.0,
-                                                              ),
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
                                                         color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: const BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        hoverColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      hoverColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
                                                     ),
                                                   ),
                                                 ],
+                                              ),
+                                              FlutterFlowDropDown<String>(
+                                                controller: _model
+                                                        .dropDownValueController ??=
+                                                    FormFieldController<String>(
+                                                        null),
+                                                options: const [
+                                                  'Shelters',
+                                                  'Volunteers'
+                                                ],
+                                                onChanged: (val) =>
+                                                    safeSetState(() => _model
+                                                        .dropDownValue = val),
+                                                width: 100.0,
+                                                height: 40.0,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                hintText: 'Select type of user',
+                                                icon: Icon(
+                                                  Icons
+                                                      .keyboard_arrow_down_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
+                                                ),
+                                                fillColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                elevation: 2.0,
+                                                borderColor: Colors.transparent,
+                                                borderWidth: 0.0,
+                                                borderRadius: 8.0,
+                                                margin: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        12.0, 0.0, 12.0, 0.0),
+                                                hidesUnderline: true,
+                                                isOverButton: false,
+                                                isSearchable: false,
+                                                isMultiSelect: false,
                                               ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
@@ -960,12 +941,8 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                         .passwordCreateTextController,
                                                     focusNode: _model
                                                         .passwordCreateFocusNode,
-                                                    autofocus: false,
-                                                    autofillHints: const [
-                                                      AutofillHints.password
-                                                    ],
-                                                    obscureText: !_model
-                                                        .passwordCreateVisibility,
+                                                    autofocus: true,
+                                                    obscureText: false,
                                                     decoration: InputDecoration(
                                                       labelText: 'Password',
                                                       labelStyle:
@@ -1032,28 +1009,6 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                           .secondaryBackground,
                                                       contentPadding:
                                                           const EdgeInsets.all(24.0),
-                                                      suffixIcon: InkWell(
-                                                        onTap: () => setState(
-                                                          () => _model
-                                                                  .passwordCreateVisibility =
-                                                              !_model
-                                                                  .passwordCreateVisibility,
-                                                        ),
-                                                        focusNode: FocusNode(
-                                                            skipTraversal:
-                                                                true),
-                                                        child: Icon(
-                                                          _model.passwordCreateVisibility
-                                                              ? Icons
-                                                                  .visibility_outlined
-                                                              : Icons
-                                                                  .visibility_off_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                      ),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1088,8 +1043,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                     autofillHints: const [
                                                       AutofillHints.password
                                                     ],
-                                                    obscureText: !_model
-                                                        .passwordConfirmVisibility,
+                                                    obscureText: false,
                                                     decoration: InputDecoration(
                                                       labelText:
                                                           'Confirm Password',
@@ -1157,28 +1111,6 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                           .secondaryBackground,
                                                       contentPadding:
                                                           const EdgeInsets.all(24.0),
-                                                      suffixIcon: InkWell(
-                                                        onTap: () => setState(
-                                                          () => _model
-                                                                  .passwordConfirmVisibility =
-                                                              !_model
-                                                                  .passwordConfirmVisibility,
-                                                        ),
-                                                        focusNode: FocusNode(
-                                                            skipTraversal:
-                                                                true),
-                                                        child: Icon(
-                                                          _model.passwordConfirmVisibility
-                                                              ? Icons
-                                                                  .visibility_outlined
-                                                              : Icons
-                                                                  .visibility_off_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                      ),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1243,7 +1175,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                                       }
 
                                                       context.pushNamedAuth(
-                                                          'Home',
+                                                          'Home4copy',
                                                           context.mounted);
                                                     },
                                                     text: 'Create Account',

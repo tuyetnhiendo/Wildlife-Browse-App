@@ -24,8 +24,6 @@ class _AvatarWidgetState extends State<AvatarWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AvatarModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

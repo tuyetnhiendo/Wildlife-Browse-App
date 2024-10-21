@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyC84-230zSDW08DZru45M_swRGRlO_PA68</string>
+	<string>AIzaSyAFAG_yP-oJXindaElgCZFP1_T3vN4-74g</string>
 	<key>GCM_SENDER_ID</key>
-	<string>832047121429</string>
+	<string>640970951740</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.mycompany.wildlifebrowseapp</string>
 	<key>PROJECT_ID</key>
-	<string>bwrac-b4189</string>
+	<string>wildlifebrowseapp-d862a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>bwrac-b4189.appspot.com</string>
+	<string>wildlifebrowseapp-d862a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:832047121429:ios:a59c46762ccb69796bfa1c</string>
+	<string>1:640970951740:ios:a3405aa3c5e73507054739</string>
 </dict>
 </plist>

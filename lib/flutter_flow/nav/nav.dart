@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -72,14 +73,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const SignInPageWidget() : const LogoPageWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? const CreaterequestWidget()
+          : const SignInPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? const SignInPageWidget() : const LogoPageWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? const CreaterequestWidget()
+              : const SignInPageWidget(),
         ),
         FFRoute(
           name: 'SignInPage',
@@ -94,12 +97,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Createrequest',
           path: '/createrequest',
-          builder: (context, params) => const CreaterequestWidget(),
+          builder: (context, params) => CreaterequestWidget(
+            request: params.getParam(
+              'request',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'Requestlist',
           path: '/Rt',
-          builder: (context, params) => const RequestlistWidget(),
+          builder: (context, params) => RequestlistWidget(
+            requestmenu: params.getParam(
+              'requestmenu',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'menu_nav',
@@ -120,20 +133,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'mainprofile',
           path: '/mainprofile',
           builder: (context, params) => const MainprofileWidget(),
-        ),
-        FFRoute(
-          name: 'image_Details',
-          path: '/imageDetails',
-          asyncParams: {
-            'chatMessage':
-                getDoc(['chat_messages'], ChatMessagesRecord.fromSnapshot),
-          },
-          builder: (context, params) => ImageDetailsWidget(
-            chatMessage: params.getParam(
-              'chatMessage',
-              ParamType.Document,
-            ),
-          ),
         ),
         FFRoute(
           name: 'profile_ChangePassword_1',
@@ -176,9 +175,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const EditprofileWidget(),
         ),
         FFRoute(
-          name: 'changepass',
-          path: '/changepass',
-          builder: (context, params) => const ChangepassWidget(),
+          name: 'resetpass',
+          path: '/resetpass',
+          builder: (context, params) => const ResetpassWidget(),
         ),
         FFRoute(
           name: 'chatlist',
@@ -191,9 +190,44 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const TestWidget(),
         ),
         FFRoute(
-          name: 'chatexam',
-          path: '/chatexam',
-          builder: (context, params) => const ChatexamWidget(),
+          name: 'homecopy3',
+          path: '/homecopy3',
+          builder: (context, params) => const Homecopy3Widget(),
+        ),
+        FFRoute(
+          name: 'Home4copy',
+          path: '/home4copy',
+          builder: (context, params) => const Home4copyWidget(),
+        ),
+        FFRoute(
+          name: 'resetmessage',
+          path: '/resetmessage',
+          builder: (context, params) => const ResetmessageWidget(),
+        ),
+        FFRoute(
+          name: 'test1',
+          path: '/test1',
+          builder: (context, params) => const Test1Widget(),
+        ),
+        FFRoute(
+          name: 'test2',
+          path: '/test2',
+          builder: (context, params) => const Test2Widget(),
+        ),
+        FFRoute(
+          name: 'Maps',
+          path: '/maps',
+          builder: (context, params) => MapsWidget(
+            map: params.getParam(
+              'map',
+              ParamType.LatLng,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'mapscopy',
+          path: '/mapscopy',
+          builder: (context, params) => const MapscopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -313,6 +347,7 @@ class FFParameters {
     ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
+    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -331,6 +366,7 @@ class FFParameters {
       type,
       isList,
       collectionNamePath: collectionNamePath,
+      structBuilder: structBuilder,
     );
   }
 }
@@ -364,7 +400,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/logoPage';
+            return '/signInPage';
           }
           return null;
         },
